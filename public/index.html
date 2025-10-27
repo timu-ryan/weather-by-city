@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Forecaster</title>
+    <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+<main class="app">
+    <header class="hero">
+        <p class="eyebrow">Weather Forecaster</p>
+        <h1>Почасовой прогноз на 24 часа</h1>
+        <p>Введите город и получите график температуры, построенный прямо в браузере.</p>
+    </header>
+
+    <form id="searchForm" class="search" autocomplete="off">
+        <div class="field">
+            <label for="city">Город</label>
+            <input id="city" name="city" placeholder="Например, Москва" required />
+        </div>
+        <button type="submit">Показать прогноз</button>
+    </form>
+
+    <div class="presets" aria-label="Популярные города">
+        <button type="button" data-city="Москва">Москва</button>
+        <button type="button" data-city="Санкт-Петербург">Санкт-Петербург</button>
+        <button type="button" data-city="Berlin">Берлин</button>
+        <button type="button" data-city="New York">Нью-Йорк</button>
+    </div>
+
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+
+    <section class="result" id="result" hidden>
+        <div class="meta">
+            <span id="cityName"></span>
+            <span id="timezone"></span>
+            <span id="coordinates"></span>
+            <span id="source"></span>
+        </div>
+        <div class="chart" id="chart" aria-live="polite"></div>
+    </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="module" src="/app.js"></script>
+</body>
+</html>

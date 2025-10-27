@@ -1,0 +1,201 @@
+:root {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: #0f172a;
+    background: #f1f5f9;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.app {
+    width: min(960px, 100%);
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+    padding: clamp(24px, 4vw, 40px);
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.hero h1 {
+    margin: 8px 0;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.hero p {
+    margin: 0;
+    color: #475569;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: #94a3b8;
+}
+
+.search {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: flex-end;
+}
+
+.field {
+    flex: 1;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.field label {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.field input {
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid #cbd5f5;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+.field input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+button {
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: none;
+    background: #2563eb;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    min-width: 160px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 15px -10px rgba(37, 99, 235, 0.7);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.status {
+    color: #475569;
+    min-height: 1.5em;
+}
+
+.presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.presets button {
+    border: 1px solid #cbd5f5;
+    background: #f8fafc;
+    color: #0f172a;
+    padding: 8px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+    font-size: 0.95rem;
+}
+
+.presets button:hover {
+    border-color: #2563eb;
+    background: #eef2ff;
+}
+
+.result {
+    display: grid;
+    gap: 16px;
+}
+
+.meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 0.95rem;
+}
+
+.meta span {
+    background: #eff4ff;
+    padding: 8px 12px;
+    border-radius: 999px;
+}
+
+.chart {
+    overflow-x: auto;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    padding: 12px;
+    background: #f8fafc;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #475569;
+    text-align: center;
+    font-size: 0.95rem;
+    position: relative;
+}
+
+.chart .skeleton {
+    width: 100%;
+    height: 360px;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #e2e8f0 25%, #f8fafc 50%, #e2e8f0 75%);
+    background-size: 400% 100%;
+    animation: shimmer 1.2s infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+.chart .skeleton::after {
+    content: attr(data-message);
+    position: absolute;
+    inset: auto auto 12px 12px;
+    color: #475569;
+    font-size: 0.85rem;
+}
+
+.chart canvas {
+    width: 100% !important;
+    max-width: 100%;
+    height: 360px !important;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: -100% 0;
+    }
+}
