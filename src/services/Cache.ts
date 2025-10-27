@@ -1,4 +1,4 @@
-import Redis from 'ioredis';
+import Redis, { RedisOptions } from 'ioredis';
 import { WeatherPayload } from '../types/weather';
 
 export interface WeatherCache {
@@ -53,8 +53,15 @@ class RedisWeatherCache implements WeatherCache {
 
 export async function createWeatherCache(redisUrl?: string): Promise<WeatherCache> {
   if (redisUrl) {
-    const client = new Redis(redisUrl);
+    const redisOptions: RedisOptions = {
+      lazyConnect: true,
+      maxRetriesPerRequest: 0,
+      retryStrategy: () => null,
+    };
+
+    const client = new Redis(redisUrl, redisOptions);
     try {
+      await client.connect();
       await client.ping();
       console.info('Redis cache enabled');
       return new RedisWeatherCache(client);
